@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <title>Сутність і призначення податків | Доповідь</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+    <style>
+        :root {
+            --primary: #111827;
+            --secondary: #374151;
+            --accent: #2563eb;
+            --bg-body: #f9fafb;
+            --bg-card: #ffffff;
+            --text-main: #374151;
+            --text-muted: #6b7280;
+            --border-color: #e5e7eb;
+            --shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.04);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            overflow-x: hidden;
+        }
+
+        body {
+            background: var(--bg-body);
+            color: var(--text-main);
+            overflow-x: hidden;
+            line-height: 1.8;
+            font-weight: 400;
+        }
+
+        /* М'ЯКИЙ ФОНОВИЙ ГРАДІЄНТ */
+        .page-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: 
+                radial-gradient(circle at 15% 15%, rgba(37, 99, 235, 0.03) 0%, transparent 45%),
+                radial-gradient(circle at 85% 85%, rgba(17, 24, 39, 0.03) 0%, transparent 45%);
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        /* АДАПТИВНЕ МЕНЮ НАВІГАЦІЇ */
+        nav {
+            position: fixed;
+            top: 15px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(255, 255, 255, 0.85);
+            border: 1px solid var(--border-color);
+            backdrop-filter: blur(12px);
+            padding: 6px 10px;
+            border-radius: 100px;
+            z-index: 1000;
+            display: flex;
+            gap: 4px;
+            max-width: 94vw;
+            overflow-x: auto;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+        }
+
+        nav::-webkit-scrollbar { display: none; }
+
+        nav a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: clamp(10px, 2vw, 11px);
+            font-weight: 600;
+            text-transform: uppercase;
+            padding: 8px 16px;
+            border-radius: 100px;
+            transition: 0.3s;
+            white-space: nowrap;
+            letter-spacing: 0.5px;
+        }
+
+        nav a:hover, nav a.active {
+            color: #ffffff;
+            background: var(--primary);
+        }
+
+        /* СЕКЦІЇ ТА КОНТЕЙНЕРИ */
+        section {
+            min-height: 100vh;
+            padding: 120px 16px 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            z-index: 2;
+        }
+
+        .content-box {
+            width: 100%;
+            max-width: 860px;
+            margin: 0 auto;
+        }
+
+        /* ЗАГОЛОВКИ */
+        h1 {
+            font-size: clamp(2.1rem, 5.5vw, 3.5rem);
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 20px;
+            color: var(--primary);
+            letter-spacing: -0.5px;
+        }
+
+        h2 {
+            font-size: clamp(1.4rem, 3.2vw, 2.1rem);
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: var(--primary);
+            border-left: 4px solid var(--accent);
+            padding-left: 14px;
+            letter-spacing: -0.3px;
+        }
+
+        p {
+            font-size: clamp(0.95rem, 2vw, 1.05rem);
+            color: var(--text-main);
+            margin-bottom: 18px;
+            text-align: justify;
+            font-weight: 400;
+        }
+
+        .accent-text {
+            color: var(--accent);
+            font-weight: 600;
+        }
+
+        /* КАРТКИ КОНТЕНТУ */
+        .card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            padding: 32px;
+            border-radius: 16px;
+            box-shadow: var(--shadow);
+            position: relative;
+        }
+
+        /* ІНФО-БАР */
+        .interactive-bar {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 20px;
+            background: rgba(37, 99, 235, 0.04);
+            border: 1px solid rgba(37, 99, 235, 0.1);
+            padding: 10px 18px;
+            border-radius: 10px;
+            font-size: 11px;
+            text-transform: uppercase;
+            font-weight: 600;
+            letter-spacing: 0.8px;
+            color: var(--accent);
+        }
+
+        .pulse-dot {
+            width: 6px;
+            height: 6px;
+            background: var(--accent);
+            border-radius: 50%;
+            display: inline-block;
+            box-shadow: 0 0 6px var(--accent);
+            animation: pulse 1.8s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(37, 99, 235, 0.5); }
+            70% { transform: scale(1); box-shadow: 0 0 0 6px rgba(37, 99, 235, 0); }
+            100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(37, 99, 235, 0); }
+        }
+
+        /* СІТКА ФУНКЦІЙ */
+        .grid-blocks {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 16px;
+            margin-top: 20px;
+        }
+
+        .block-item {
+            background: #f9fafb;
+            border: 1px solid var(--border-color);
+            padding: 20px;
+            border-radius: 12px;
+            border-left: 3px solid var(--accent);
+        }
+
+        .block-item h4 {
+            font-size: 0.95rem;
+            color: var(--primary);
+            margin-bottom: 6px;
+            font-weight: 600;
+        }
+
+        .block-item p {
+            font-size: 0.9rem;
+            margin-bottom: 0;
+            text-align: left;
+            color: var(--text-muted);
+        }
+
+        /* ФУТЕР */
+        footer {
+            padding: 30px 16px;
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 11px;
+            letter-spacing: 1px;
+            border-top: 1px solid var(--border-color);
+            background: #ffffff;
+            position: relative;
+            z-index: 2;
+            font-weight: 500;
+        }
+
+        /* МОБІЛЬНА АДАПТАЦІЯ */
+        @media (max-width: 768px) {
+            .grid-blocks { grid-template-columns: 1fr; }
+            .card { padding: 20px; border-radius: 12px; }
+            section { padding-top: 95px; padding-bottom: 40px; min-height: auto; }
+            nav { top: 10px; max-width: 96vw; padding: 4px 6px; }
+            nav a { padding: 6px 12px; font-size: 9px; }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="page-background"></div>
+
+    <!-- НАВІГАЦІЯ -->
+    <nav>
+        <a href="#intro" class="nav-link active">Вступ</a>
+        <a href="#foundations" class="nav-link">Сутність</a>
+        <a href="#functions" class="nav-link">Функції</a>
+        <a href="#trends" class="nav-link">Тенденції</a>
+        <a href="#conclusion" class="nav-link">Висновок</a>
+    </nav>
+
+
+    <!-- 1. ВСТУП -->
+    <section id="intro">
+        <div class="content-box" data-aos="fade-up">
+            <div class="interactive-bar">
+                <span><span class="pulse-dot"></span> Публічні фінанси • Доповідь</span>
+                <span>Ігор Прайс • Група КБ-25-1</span>
+            </div>
+            <h1>Сутність і призначення <br><span class="accent-text">податків</span></h1>
+
+            <div class="card">
+                <p>
+                    Будь-яка сучасна держава для виконання своїх конституційних завдань від забезпечення національної безпеки та підтримки правопорядку до надання масштабних послуг потребує концентрації значних фінансових ресурсів.
+                </p>
+                <p style="margin-bottom: 0;">
+                    Ключовим інструментом їх мобілізації є податки. На сьогодні роль податків у системі публічних фінансів визначає не лише рівень наповнення бюджету, а й здатність держави проводити ефективну соціально-економічну політику та забезпечувати стабільність.
+                </p>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- 2. СУТНІСТЬ ПОДАТКІВ -->
+    <section id="foundations">
+        <div class="content-box">
+            <h2 data-aos="fade-up">Сутність податків</h2>
+
+            <div class="card" data-aos="fade-up">
+                <p>
+                    У широкому розумінні податки є законодавчо закріпленою системою обов’язкових платежів, які справляються уповноваженими органами державної влади з юридичних і фізичних осіб задля забезпечення фінансових потреб публічно-правових утворень.
+                </p>
+                <p>
+                    На відміну від ринкових обмінів чи добровільних внесків, податки носять примусовий характер і не передбачають безпосереднього зустрічного відшкодування або еквівалентності для кожного окремого платника.
+                </p>
+                <p style="margin-bottom: 0;">
+                    Фундамент податкової системи утворюють загальнодержавні та місцеві податки, структура ставок, порядок їх обчислення, терміни сплати та система пільг, які формують єдиний регуляторний механізм в економіці.
+                </p>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- 3. ФУНКЦІЇ ТА ПРИЗНАЧЕННЯ -->
+    <section id="functions">
+        <div class="content-box">
+            <h2 data-aos="fade-up">Функції та призначення</h2>
+
+            <div class="card" data-aos="fade-up">
+                <p>
+                    Призначення податків у системі публічних фінансів найповніше розкривається через систему їхніх фундаментальних функцій.
+                </p>
+
+                <div class="grid-blocks">
+                    <div class="block-item">
+                        <h4>Фіскальна функція</h4>
+                        <p>Основа існування держави, що полягає у формуванні дохідної частини бюджетів для покриття публічних витрат, фінансування інфраструктури та соціальних програм.</p>
+                    </div>
+                    <div class="block-item">
+                        <h4>Регулююча функція</h4>
+                        <p>Вплив держави через систему ставок і преференцій на стимулювання пріоритетних галузей інвестицій або стримування окремих видів господарської діяльності.</p>
+                    </div>
+                    <div class="block-item">
+                        <h4>Соціальна функція</h4>
+                        <p>Згладжування майнової нерівності через прогресивне оподаткування та наступний перерозподіл ресурсів на користь найбільш вразливих верств суспільства.</p>
+                    </div>
+                    <div class="block-item">
+                        <h4>Контрольна функція</h4>
+                        <p>Здійснення фінансовими органами моніторингу повноти та своєчасності надходжень до бюджету й аналізу стану фінансової активності суб'єктів.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- 4. СУЧАСНІ ТЕНДЕНЦІЇ ТА ВИКЛИКИ -->
+    <section id="trends">
+        <div class="content-box">
+            <h2 data-aos="fade-up">Сучасні тенденції та виклики</h2>
+
+            <div class="card" data-aos="fade-up">
+                <p>
+                    У сучасних умовах система оподаткування зазнає глибокої трансформації під впливом глобалізації, діджиталізації та нових економічних реалій. Традиційні адміністративні методи податкового контролю поступово поступаються місцем інноваційним підходам.
+                </p>
+                <p style="margin-bottom: 0;">
+                    Головним трендом є цифровізація процесів, зокрема запровадження електронних кабінетів платників, автоматизованого обміну даними та систем електронного адміністрування, що робить взаємодію бізнесу з державою значно прозорішою.
+                </p>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- 5. ВИСНОВОК -->
+    <section id="conclusion">
+        <div class="content-box">
+            <h2 data-aos="fade-up">Висновки</h2>
+
+            <div class="card" data-aos="fade-up">
+                <p>
+                    Підсумовуючи, слід зазначити, що податки є не просто інструментом бухгалтерського обліку чи фіскальним тягарем, а центральним елементом всієї системи сучасних публічних фінансів.
+                </p>
+                <p>
+                    Ефективна податкова система забезпечує довіру громадян до державних інститутів, гарантує фінансову стійкість країни та створює сприятливі умови для сталого економічного розвитку.
+                </p>
+                <p style="text-align: center; margin-top: 20px; font-weight: 600; color: var(--primary); text-transform: uppercase; letter-spacing: 0.8px; font-size: 0.85rem;">
+                    Дякую за увагу • Ігор Прайс (2026)
+                </p>
+            </div>
+        </div>
+    </section>
+
+
+    <footer>
+        Державний податковий університет • Група КБ-25-1
+    </footer>
+
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({ duration: 700, once: true });
+
+        window.addEventListener("scroll", () => {
+            let current = "";
+            document.querySelectorAll("section").forEach(section => {
+                if (window.pageYOffset >= section.offsetTop - 250) {
+                    current = section.getAttribute("id");
+                }
+            });
+
+            document.querySelectorAll("nav a").forEach(link => {
+                link.classList.remove("active");
+                if (link.getAttribute("href").includes(current)) {
+                    link.classList.add("active");
+                }
+            });
+        });
+    </script>
+
+</body>
+</html>
